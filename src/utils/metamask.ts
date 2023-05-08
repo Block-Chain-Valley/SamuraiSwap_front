@@ -1,14 +1,10 @@
 export const connectToMetamask = async () => {
   if (window.ethereum) {
     try {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      return accounts;
-    } catch (error) {
-      console.error(error);
+      await window.ethereum.enable();
+      return true;
+    } catch (err) {
+      return false;
     }
-  } else {
-    console.log("Please install Metamask");
   }
 };
